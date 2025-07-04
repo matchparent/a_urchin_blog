@@ -1,22 +1,24 @@
 {
   "expo": {
-    "name": "a_urchin_blog",
+    "name": "Urchin Blog",
     "slug": "a_urchin_blog",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "aurchinblog",
+    "icon": "./assets/images/react-logo.png",
+    "scheme": "urchinblog",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.a-urchin-blog"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.anonymous.a_urchin_blog"
     },
     "web": {
       "bundler": "metro",
@@ -37,6 +39,12 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "f6227246-8ab6-44a7-bd81-67c6ad264951"
+      }
     }
   }
 }

@@ -1,0 +1,17 @@
+pkill -f "expo start"
+npx expo start --clear
+
+# https://expo.dev/accounts/wrapcontent
+
+npm install -g eas-cli
+eas login
+eas build:configure
+APK：
+eas build -p android --profile preview --clear-cache
+eas build -p ios --profile preview
+
+
+npx expo prebuild         # generate or update android&ios folder
+cd android
+./gradlew clean           # 可选，遇到构建问题时建议先 clean
+./gradlew assembleRelease # 生成 release APK        android/app/build/outputs/apk/release/app-release.apk

@@ -37,3 +37,32 @@ yarn-error.*
 *.tsbuildinfo
 
 app-example
+
+# React Native
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+.expo/
+.expo-shared/
+dist/
+build/
+coverage/
+.env
+.env.*
+*.log
+
+# macOS
+.DS_Store
+
+# VSCode
+.vscode/
+
+# JetBrains IDEs
+.idea/
+
+# Android
+android/
+# iOS
+ios/
