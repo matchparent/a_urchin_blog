@@ -54,11 +54,11 @@ export default function WriteScreen() {
 
   const handleSubmit = () => {
     if (!title.trim()) {
-      showToast("Article title cannot be empty!");
+      showToast("Blog title cannot be empty!");
       return;
     }
     if (!content.trim()) {
-      showToast("Article content cannot be empty!");
+      showToast("Blog content cannot be empty!");
       return;
     }
     if (!user?.id) {
@@ -78,7 +78,7 @@ export default function WriteScreen() {
     })
       .then(({ data }) => {
         if (data.success) {
-          Alert.alert("Success", "Article published successfully!", [
+          Alert.alert("Success", "Blog published successfully!", [
             {
               text: "OK",
               onPress: () => {
@@ -88,13 +88,11 @@ export default function WriteScreen() {
             },
           ]);
         } else {
-          showToast(
-            `Failed to publish article: ${data.error || "Unknown error"}`
-          );
+          showToast(`Failed to publish blog: ${data.error || "Unknown error"}`);
         }
       })
       .catch((error: unknown) => {
-        console.error("Error publishing article:", error);
+        console.error("Error publishing blog:", error);
         const axiosError = error as AxiosError<{ error: string }>;
         showToast(
           axiosError.response?.data?.error ||

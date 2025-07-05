@@ -1,50 +1,85 @@
-# Welcome to your Expo app 👋
+# Urchin Blog
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A cross-platform (Android/iOS/Web) personal blog app built with React Native, Expo, and TypeScript.  
+Features user authentication, profile management, blog writing/preview, comments, and more.
 
-## Get started
+## Features
 
-1. Install dependencies
+- **User Authentication**: Register, login, and secure session management.
+- **Profile Center**: View and update profile info, avatar upload, change password.
+- **Blog System**: Write blogs in Markdown, preview before publishing, view all blogs with pagination and pull-to-refresh.
+- **My Blogs**: View and manage your own published blogs.
+- **Blog Detail**: View full blog content, including comments and nested replies.
+- **Comment System**: Post comments and replies, with login check and real-time UI update.
+- **Modern UI**: Responsive, themed, and mobile-friendly interface.
+- **Android/iOS/Web**: Runs on all major platforms via Expo.
 
-   ```bash
-   npm install
-   ```
+## Screenshots
 
-2. Start the app
+> _Add screenshots here if available_
 
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+### 1. Clone the repository
 
 ```bash
-npm run reset-project
+git clone <your-repo-url>
+cd a_urchin_blog
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### 2. Install dependencies
 
-## Learn more
+```bash
+npm install
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+### 3. Start the app
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```bash
+npm start
+```
 
-## Join the community
+- Use the Expo QR code to open on your device, or run on an emulator:
+  - Android: `npm run android`
+  - iOS: `npm run ios`
+  - Web: `npm run web`
 
-Join our community of developers creating universal apps.
+### 4. Build for Android/iOS
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- Android APK (requires EAS or native build tools):
+  ```bash
+  cd android
+  ./gradlew assembleRelease
+  ```
+- iOS: Use Xcode or EAS Build.
+
+## Project Structure
+
+```
+a_urchin_blog/
+  app/                # Main app screens and navigation (Expo Router)
+    (tabs)/           # Tab navigation: Home, Profile, Write
+    blogDetail.tsx    # Blog detail page
+    login.tsx         # Login page
+    register.tsx      # Register page
+    myBlogs.tsx       # My blogs page
+    updateProfile.tsx # Update profile info
+    updatePassword.tsx# Update password
+  components/         # Reusable UI components
+  constants/          # Theme and color constants
+  hooks/              # Custom React hooks
+  utils/              # Utility functions (API, Toast, etc.)
+  assets/             # Images, fonts, icons
+  android/            # (Ignored by git) Native Android project
+  ios/                # (Ignored by git) Native iOS project
+```
+
+## Tech Stack
+
+- **React Native 0.79+**
+- **Expo 53+**
+- **TypeScript**
+- **Expo Router** (file-based navigation)
+- **Axios** (API requests)
+- **AsyncStorage** (local storage)
+- **expo-image-picker** (avatar upload)
+- **react-native-markdown-display** (Markdown preview)
+- **Other Expo/React Native libraries** (see `package.json`)

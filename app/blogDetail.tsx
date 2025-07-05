@@ -5,6 +5,7 @@ import { SymbolView } from "expo-symbols";
 import React, { useEffect, useState } from "react";
 import {
   Alert,
+  Image,
   KeyboardAvoidingView,
   Platform,
   SafeAreaView,
@@ -16,6 +17,7 @@ import {
   View,
 } from "react-native";
 import Markdown from "react-native-markdown-display";
+import { BASE_URL } from "../env";
 
 // 定义评论类型
 interface CommentWithUser {
@@ -201,10 +203,33 @@ export default function BlogDetailScreen() {
             <View style={{ width: 44 }} />
           </View>
           <View style={styles.metaRow}>
-            <Text style={styles.meta}>Views: {blog.num_view}</Text>
-            <Text style={styles.meta}>
-              {new Date(blog.create_time).toLocaleDateString()}
-            </Text>
+            <View style={styles.authorInfoRow}>
+              {blog.author && blog.author.uid ? (
+                <Image
+                  source={{
+                    uri: `${BASE_URL}/api/portrait?uid=${blog.author.uid}`,
+                    cache: "reload",
+                  }}
+                  style={styles.authorAvatar}
+                  onError={() => {}}
+                />
+              ) : (
+                <View
+                  style={[styles.authorAvatar, { backgroundColor: "#eee" }]}
+                />
+              )}
+              <Text style={styles.authorName}>
+                {blog.author && blog.author.nickname
+                  ? blog.author.nickname
+                  : "Anonymous"}
+              </Text>
+            </View>
+            <View style={styles.metaRightRow}>
+              <Text style={styles.meta}>Views: {blog.num_view}</Text>
+              <Text style={[styles.meta, { marginLeft: 12 }]}>
+                {new Date(blog.create_time).toLocaleDateString()}
+              </Text>
+            </View>
           </View>
           <Markdown style={markdownStyles}>{blog.content}</Markdown>
 
@@ -277,7 +302,28 @@ const styles = StyleSheet.create({
   metaRow: {
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
     marginBottom: 16,
+  },
+  authorInfoRow: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  authorAvatar: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    marginRight: 8,
+    backgroundColor: "#eee",
+  },
+  authorName: {
+    fontSize: 14,
+    fontWeight: "bold",
+    color: "#333",
+  },
+  metaRightRow: {
+    flexDirection: "row",
+    alignItems: "center",
   },
   meta: { color: "#888", fontSize: 13 },
   loading: { marginTop: 40, textAlign: "center" },

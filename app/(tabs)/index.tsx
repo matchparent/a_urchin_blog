@@ -8,10 +8,12 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";
 import {
+  Image,
   RefreshControl,
   SafeAreaView,
   StyleSheet,
   TouchableOpacity,
+  View,
 } from "react-native";
 import Markdown from "react-native-markdown-display";
 import Animated from "react-native-reanimated";
@@ -22,6 +24,10 @@ interface Blog {
   content: string;
   num_view: number;
   create_time: string;
+  author?: {
+    uid: string;
+    nickname: string;
+  };
 }
 
 export default function HomeScreen() {
@@ -105,9 +111,58 @@ export default function HomeScreen() {
             activeOpacity={0.8}
           >
             <ThemedView style={styles.blogItem}>
-              <ThemedText type="defaultSemiBold" style={styles.title}>
-                {blog.title}
-              </ThemedText>
+              <SafeAreaView
+                style={{
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
+                <ThemedText
+                  type="defaultSemiBold"
+                  style={styles.title}
+                  numberOfLines={1}
+                >
+                  {blog.title}
+                </ThemedText>
+                <SafeAreaView
+                  style={{ flexDirection: "row", alignItems: "center" }}
+                >
+                  {blog.author && blog.author.nickname && (
+                    <ThemedText
+                      style={{ fontSize: 13, color: "#333", marginRight: 6 }}
+                      numberOfLines={1}
+                    >
+                      {blog.author.nickname}
+                    </ThemedText>
+                  )}
+                  {blog.author && blog.author.uid ? (
+                    <Image
+                      source={{
+                        uri: `${require("@/env").BASE_URL}/api/portrait?uid=${
+                          blog.author.uid
+                        }`,
+                        cache: "reload",
+                      }}
+                      style={{
+                        width: 28,
+                        height: 28,
+                        borderRadius: 14,
+                        backgroundColor: "#eee",
+                      }}
+                    />
+                  ) : (
+                    <View
+                      style={{
+                        width: 28,
+                        height: 28,
+                        borderRadius: 14,
+                        backgroundColor: "#eee",
+                      }}
+                    />
+                  )}
+                </SafeAreaView>
+              </SafeAreaView>
               <ThemedText style={styles.text}>
                 Views: {blog.num_view} &nbsp;&nbsp;&nbsp;&nbsp; Created:{" "}
                 {new Date(blog.create_time).toLocaleDateString()}
