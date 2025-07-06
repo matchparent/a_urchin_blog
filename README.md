@@ -14,43 +14,6 @@ Features user authentication, profile management, blog writing/preview, comments
 - **Modern UI**: Responsive, themed, and mobile-friendly interface.
 - **Android/iOS/Web**: Runs on all major platforms via Expo.
 
-## Screenshots
-
-> _Add screenshots here if available_
-
-### 1. Clone the repository
-
-```bash
-git clone <your-repo-url>
-cd a_urchin_blog
-```
-
-### 2. Install dependencies
-
-```bash
-npm install
-```
-
-### 3. Start the app
-
-```bash
-npm start
-```
-
-- Use the Expo QR code to open on your device, or run on an emulator:
-  - Android: `npm run android`
-  - iOS: `npm run ios`
-  - Web: `npm run web`
-
-### 4. Build for Android/iOS
-
-- Android APK (requires EAS or native build tools):
-  ```bash
-  cd android
-  ./gradlew assembleRelease
-  ```
-- iOS: Use Xcode or EAS Build.
-
 ## Project Structure
 
 ```
